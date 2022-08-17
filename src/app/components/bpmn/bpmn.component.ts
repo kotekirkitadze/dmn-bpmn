@@ -21,26 +21,26 @@ export class BpmnComponent implements OnInit {
         responseType: 'text',
       })
       .subscribe((x: any) => {
-        this.ucBpmn.loadXml(x);
-        console.log('dada', this.ucBpmn.bpmnJS);
+        this.ucBpmn.loadXmlString(x);
+        // console.log('dada', this.ucBpmn.bpmnJS);
       }, console.log);
   }
 
   export() {
-    this.ucBpmn.bpmnJS.saveXML((err, data) => {
-      console.log(data);
-    });
+    // this.ucBpmn.bpmnJS.saveXML((err, data) => {
+    //   console.log(data);
+    // });
   }
 
   exportJson() {
-    this.ucBpmn.getJson().then((json) => {
-      console.log(json);
-      this.json = json;
-    });
+    // this.ucBpmn.getJson().then((json) => {
+    //   console.log(json);
+    //   this.json = json;
+    // });
   }
 
   readJson() {
-    const xml = this.ucBpmn.loadJson(this.json);
-    console.log(xml);
+    // const xml = this.ucBpmn.loadJson(this.json);
+    // console.log(xml);
   }
 }
