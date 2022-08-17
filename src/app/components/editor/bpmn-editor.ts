@@ -13,48 +13,23 @@ import {
 } from '@angular/core';
 import * as X2JS from 'x2js';
 import { HttpClient } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { Subscription, Observable } from 'rxjs';
-// import {
-//   BpmnPropertiesPanelModule,
-//   BpmnPropertiesProviderModule,
-// } from 'bpmn-js-properties-panel';
-
-/**
- * You may include a different variant of BpmnJS:
- *
- * Viewer  - displays BPMN diagrams without the ability
- *           to navigate them
- * Modeler - bootstraps a full-fledged BPMN editor
- */
-import BpmnJS from 'bpmn-js/lib/NavigatedViewer.js';
-import BpmnViewerJS from 'bpmn-js/lib/Viewer.js';
-import BpmnModelerJS from 'bpmn-js/lib/Modeler.js';
-// import BpmnModelerJS from 'bpmn-js/dist/bpmn-modeler.production.min.js';
-// import BpmnJS from 'bpmn-js';
 import BpmnModeler from 'bpmn-js/lib/Modeler';
-
-import propertiesPanelModule from 'bpmn-js-properties-panel';
-import propertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/camunda';
-// import { importDiagram } from './lib';
-
+import {
+  BpmnPropertiesPanelModule,
+  BpmnPropertiesProviderModule,
+} from 'bpmn-js-properties-panel';
+import propertiesPanel from 'bpmn-js-properties-panel';
+import propertiesProvider from 'bpmn-js-properties-panel/lib/provider/camunda';
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'ng-bpmn',
   template: `
     <div class="modeler">
       <div id="canvas"></div>
-      <div id="properties"></div>
+      <div class="properties-panel" id="properties"></div>
     </div>
   `,
-  styles: [
-    `
-      .diagram-container {
-        height: 100%;
-        width: 100%;
-      }
-    `,
-  ],
+  styleUrls: ['./editor.scss'],
 })
 export class BpmnEditorComponent
   implements AfterContentInit, OnChanges, OnDestroy, OnInit
@@ -93,7 +68,7 @@ export class BpmnEditorComponent
       propertiesPanel: {
         parent: '#properties',
       },
-      additionalModules: [propertiesPanelModule, propertiesProviderModule],
+      additionalModules: [propertiesPanel, propertiesProvider],
     });
   }
 
