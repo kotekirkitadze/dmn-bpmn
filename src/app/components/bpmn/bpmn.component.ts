@@ -22,6 +22,7 @@ export class BpmnComponent implements OnInit {
       })
       .subscribe((x: any) => {
         this.ucBpmn.loadXml(x);
+        console.log('dada', this.ucBpmn.bpmnJS);
       }, console.log);
   }
 

@@ -15,6 +15,10 @@ import * as X2JS from 'x2js';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { Subscription, Observable } from 'rxjs';
+// import {
+//   BpmnPropertiesPanelModule,
+//   BpmnPropertiesProviderModule,
+// } from 'bpmn-js-properties-panel';
 
 /**
  * You may include a different variant of BpmnJS:
@@ -28,13 +32,21 @@ import BpmnViewerJS from 'bpmn-js/lib/Viewer.js';
 import BpmnModelerJS from 'bpmn-js/lib/Modeler.js';
 // import BpmnModelerJS from 'bpmn-js/dist/bpmn-modeler.production.min.js';
 // import BpmnJS from 'bpmn-js';
+import BpmnModeler from 'bpmn-js/lib/Modeler';
 
+import propertiesPanelModule from 'bpmn-js-properties-panel';
+import propertiesProviderModule from 'bpmn-js-properties-panel/lib/provider/camunda';
 // import { importDiagram } from './lib';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'ng-bpmn',
-  template: ` <div #ref class="diagram-container"></div> `,
+  template: `
+    <div class="modeler">
+      <div id="canvas"></div>
+      <div id="properties"></div>
+    </div>
+  `,
   styles: [
     `
       .diagram-container {
@@ -57,20 +69,31 @@ export class BpmnEditorComponent
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    const options = {
-      container: '.diagram-container',
-    };
-    if (this.type === 'modeler') {
-      this.bpmnJS = new BpmnModelerJS(options);
-    } else if (this.type === 'viewer') {
-      this.bpmnJS = new BpmnViewerJS(options);
-    } else {
-      this.bpmnJS = new BpmnJS(options);
-    }
-    this.bpmnJS.on('import.done', (data: any) => {
-      if (!data.error) {
-        this.bpmnJS.get('canvas').zoom('fit-viewport');
-      }
+    // const options = {
+    //   container: '.diagram-container',
+    // };
+    // if (this.type === 'modeler') {
+    //   this.bpmnJS = new BpmnModelerJS(options);
+    // } else if (this.type === 'viewer') {
+    //   this.bpmnJS = new BpmnViewerJS(options);
+    // } else {
+    //   this.bpmnJS = new BpmnJS(options);
+    // }
+    // this.bpmnJS.on('import.done', (data: any) => {
+    //   if (!data.error) {
+    //     this.bpmnJS.get('canvas').zoom('fit-viewport');
+    //   }
+    // });
+    this.init();
+  }
+
+  init() {
+    this.bpmnJS = new BpmnModeler({
+      container: '#canvas',
+      propertiesPanel: {
+        parent: '#properties',
+      },
+      additionalModules: [propertiesPanelModule, propertiesProviderModule],
     });
   }
 
