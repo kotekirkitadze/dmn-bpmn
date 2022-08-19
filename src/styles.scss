@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+app-root {
+  width: 100%;
+}
+
+html,
+body,
+.container {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  font-family: sans-serif;
+}
+
+#container {
+  flex-grow: 1;
+}
+
+#properties-panel-container .dpp-properties-panel {
+  background: #f8f8f8;
+  border-left: solid 1px #ccc;
+  height: 100%;
+  width: 300px;
+}
+
+#properties-panel-container.hidden {
+  display: none;
+}
+
+.tjs-container,
+.dmn-literal-expression-container > .viewer-container {
+  padding: 10px;
+}

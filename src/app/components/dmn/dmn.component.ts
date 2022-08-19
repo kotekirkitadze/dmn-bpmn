@@ -35,9 +35,9 @@ export class DmnComponent implements OnInit {
   test(dmn: any) {
     const dmnJS = new DmnJS({
       container: document.getElementById('container'),
-      width: '100%',
-      height: '100%',
-      position: 'absolute',
+      // width: '100%',
+      // height: '100%',
+      // position: 'absolute',
       decisionTable: {
         keyboard: {
           bindTo: document,
