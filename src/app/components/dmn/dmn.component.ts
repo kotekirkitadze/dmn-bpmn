@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 // import Viewer from 'dmn-js';
 import { HttpClient } from '@angular/common/http';
-// import camundaModdleDescriptor from 'camunda-dmn-moddle/resources/camunda';
-// // import * as camundaModdleDescriptor from 'camunda-dmn-moddle/resources/camunda.json';
 import camundaModdleDescriptor from 'camunda-dmn-moddle';
 import propertiesPanelModule from 'dmn-js-properties-panel';
 import propertiesProviderModule from 'dmn-js-properties-panel/lib/provider/camunda';
 import drdAdapterModule from 'dmn-js-properties-panel/lib/adapter/drd';
-// import 'dmn-js-properties-panel/dist/assets/dmn-js-properties-panel.css';
 import DmnJS from 'dmn-js/lib/Modeler';
 @Component({
   selector: 'app-dmn',
@@ -35,9 +32,6 @@ export class DmnComponent implements OnInit {
   test(dmn: any) {
     const dmnJS = new DmnJS({
       container: document.getElementById('container'),
-      // width: '100%',
-      // height: '100%',
-      // position: 'absolute',
       decisionTable: {
         keyboard: {
           bindTo: document,
